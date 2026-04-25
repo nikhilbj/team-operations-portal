@@ -3,7 +3,8 @@ package com.nikhil.teamoperationsportal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:5174")
+
+@CrossOrigin(origins = "https://team-operations-portal.vercel.app")
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
