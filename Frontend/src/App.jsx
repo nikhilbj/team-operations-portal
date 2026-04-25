@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const API_URL = "https://team-operations-portal-production.up.railway.app";
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [editId, setEditId] = useState(null);
@@ -13,7 +15,7 @@ function App() {
   });
 
   const fetchTasks = () => {
-    fetch("http://localhost:8080/tasks")
+    fetch(`${API_URL}/tasks`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
   };
@@ -27,9 +29,7 @@ function App() {
   };
 
   const saveTask = () => {
-    const url = editId
-      ? `http://localhost:8080/tasks/${editId}`
-      : "http://localhost:8080/tasks";
+    const url = editId ? `${API_URL}/tasks/${editId}` : `${API_URL}/tasks`;
 
     fetch(url, {
       method: editId ? "PUT" : "POST",
@@ -42,7 +42,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    fetch(`http://localhost:8080/tasks/${id}`, {
+    fetch(`${API_URL}/tasks/${id}`, {
       method: "DELETE",
     }).then(() => fetchTasks());
   };
